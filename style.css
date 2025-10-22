@@ -1,0 +1,228 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- FULL SCREEN CONTAINER --- */
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background: #f0f2f5; /* Light gray background for the overall page */
+    overflow: hidden; /* Prevent body scroll bars */
+}
+
+.chatbot-container {
+    width: 100%;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100vh;
+    background: #ffffff; /* White background for the chat area */
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* --- HEADER --- */
+.chatbot-header {
+    padding: 15px 20px;
+    text-align: left;
+    color: #fff;
+    background: #075E54; /* WhatsApp-like header color */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.chatbot-header h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* --- CHAT WINDOW & SCROLLING --- */
+.chat-window {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px 15px;
+    list-style: none;
+    line-height: 1.4;
+    background-color: #E5DDD5; /* Light, warm background for the message area */
+}
+
+/* Scrollbar styling */
+.chat-window::-webkit-scrollbar {
+    width: 8px;
+}
+.chat-window::-webkit-scrollbar-thumb {
+    background: #aebac1;
+    border-radius: 4px;
+}
+
+.chat-window .chat {
+    display: flex;
+    margin-bottom: 8px; /* Reduced margin for tighter chat view */
+    max-width: 80%; /* Messages don't span full width */
+}
+
+.chat-window .incoming {
+    justify-content: flex-start;
+    margin-right: auto; /* Push incoming left */
+}
+
+.chat-window .outgoing {
+    justify-content: flex-end;
+    margin-left: auto; /* Push outgoing right */
+}
+
+/* --- MESSAGE BUBBLES --- */
+.chat-window .chat p {
+    white-space: pre-wrap;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.chat-window .incoming p {
+    background: #fff; /* White bubble for AI */
+    color: #000;
+    border-radius: 0 8px 8px 8px; /* Squared corner near the icon */
+    position: relative;
+    /* Optional: Add a subtle triangle/tail */
+    /* &::before { content: ''; ... } */
+}
+
+.chat-window .outgoing p {
+    background: #DCF8C6; /* Light green bubble for user */
+    color: #000;
+    border-radius: 8px 0 8px 8px; /* Squared corner near the right */
+}
+
+/* --- BOT ICON / AVATAR --- */
+.chat-window .incoming .material-symbols-rounded {
+    align-self: flex-start;
+    width: 28px; /* Slightly smaller icon */
+    height: 28px;
+    color: #fff;
+    text-align: center;
+    line-height: 28px;
+    background: #075E54;
+    border-radius: 50%;
+    margin-right: 8px;
+    font-size: 1.1rem;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+/* --- INPUT AREA --- */
+.chat-input-area {
+    display: flex;
+    padding: 10px 15px;
+    border-top: 1px solid #ddd;
+    background: #f0f2f5; /* Light gray background for input area */
+    align-items: flex-end; /* Align items to the bottom */
+}
+
+.chat-input-area textarea {
+    flex-grow: 1;
+    min-height: 48px;
+    max-height: 150px;
+    border: none; /* Removed border */
+    background: #fff; /* White input background */
+    border-radius: 24px; /* Fully rounded input field */
+    padding: 12px 18px;
+    resize: none;
+    outline: none;
+    font-size: 1rem;
+    margin-right: 8px;
+    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13); /* Subtle input shadow */
+    transition: box-shadow 0.2s;
+}
+
+.chat-input-area textarea:focus {
+    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.2);
+}
+
+.chat-input-area button {
+    border: none;
+    background: #075E54; /* Darker green send button */
+    color: #fff;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+.chat-input-area button .material-symbols-rounded {
+    font-size: 1.5rem;
+}
+
+.chat-input-area button:hover:enabled {
+    background: #128C7E; /* Slightly brighter hover color */
+}
+
+.chat-input-area button:disabled {
+    background: #BCC0C4;
+    cursor: not-allowed;
+}
+
+
+
+/* MEDIA QUERIES (FOR LAPTOP AND MOBILE SCREENS) */
+
+/* 1. Full Screen / Desktop View (App-like Box) */
+/* Apply this design when the screen is wider than 768px */
+@media screen and (min-width: 768px) {
+    body {
+        /* Re-center the content, removing the full-width look */
+        justify-content: center;
+        align-items: center;
+        background: #f0f2f5; /* Maintain page background */
+        padding: 20px;
+    }
+    
+    .chatbot-container {
+        /* Constrain size for a better desktop app feel */
+        width: 100%;
+        max-width: 500px; /* Maximum width of the chat window */
+        height: 80vh; /* Reduced height */
+        max-height: 700px; /* Maximum height */
+        border-radius: 12px; /* Add back rounded corners */
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); /* Add box shadow */
+    }
+    
+    .chat-window {
+        padding: 20px;
+    }
+}
+
+/* 2. Mobile / Small Screen Adjustments */
+/* Apply this design when the screen is smaller than 600px */
+@media screen and (max-width: 600px) {
+    .chatbot-container {
+        /* Ensure it's truly full screen on mobile */
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    /* Make the message bubbles slightly smaller on mobile */
+    .chat-window .chat p {
+        font-size: 0.85rem;
+    }
+
+    /* Give a little more space to the input area on smaller screens */
+    .chat-input-area {
+        padding: 10px;
+    }
+}
